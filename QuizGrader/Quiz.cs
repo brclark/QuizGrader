@@ -5,10 +5,45 @@ namespace QuizGrader
 {
     public class Quiz
     {
-        public List<Question> AllQuestions { get; set; }
+        public List<IQuestionable> AllQuestions { get; set; }
 
-        public Quiz()
+        public string Name { get; set; }
+        public double Grade { get; set; }
+        public DateTime Date { get; set; }
+
+        public Quiz(string name, DateTime date)
         {
+            this.Name = name;
+            this.Date = date;
+
+            this.AllQuestions = new List<IQuestionable>();
+            this.Grade = 0;
+        }
+
+        public Quiz(string name) : this(name, DateTime.Now) { }
+
+        public void AddQuestion(IQuestionable question)
+        {
+            this.AllQuestions.Add(question);
+        }
+
+        public void AdministerQuiz()
+        {
+            // Call AdministerQuestion() method of each Question object
+            foreach (IQuestionable question in this.AllQuestions)
+            {
+                question.AdministerQuestion();
+            }
+        }
+
+        public void GradeQuiz()
+        {
+            // Call GradeQuestion() method of each Question object
+            foreach (IQuestionable question in this.AllQuestions)
+            {
+                this.Grade += question.GradeQuestion();
+            }
+
         }
     }
 }

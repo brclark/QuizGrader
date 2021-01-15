@@ -15,6 +15,11 @@ namespace QuizGrader
             this.AddPossibleAnswer("False", !correctAnswer);
         }
         // TrueFalseQuestion tfq = new TrueFalseQuestion("Gus is still here", false)
+                        // "True" -> false
+                        // "False" -> true
+        // TrueFalseQuestion tfq2 = new TrueFalseQuestion("St. Louis is in the midwest", true);
+                        // "True" -> true
+                        // "False" -> false
 
         public override void AdministerQuestion()
         {
